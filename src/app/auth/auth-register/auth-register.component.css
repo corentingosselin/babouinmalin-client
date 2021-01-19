@@ -1,0 +1,19 @@
+input {
+  border-color: #007CA2;
+  border-radius: 50px;
+  width: 400px;
+}
+
+a {
+  color: black;
+  text-decoration: underline;
+}
+
+.auth-login-page {
+  margin-top: 40vh;
+  transform: translateY(-50%);
+}
+
+#h-monkey {
+  margin-top: 150px;
+}

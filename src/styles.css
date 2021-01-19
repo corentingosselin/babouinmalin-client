@@ -1,1 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
+
+
+h1 {
+  font-size: 60px;
+  color: #007CA2;
+  font-weight: bold;
+}
+
+label {
+  color: #007CA2;
+  font-weight: bold;
+}
+
+.small-btn-confirm {
+  width: 200px;
+  height: 50px;
+  color: white;
+  font-size: 20px;
+  background-color: #007CA2;
+  font-weight: bold;
+  border-radius: 50px;
+  border-color: white;
+}

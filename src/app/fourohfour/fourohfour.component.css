@@ -1,0 +1,27 @@
+#text-info {
+  font-size: 50px;
+  color: #007CA2;
+  font-weight: bold;
+}
+
+.fourohfour-page {
+
+  margin-top: 50vh;
+  transform: translateY(-50%);
+
+}
+
+#go-back-home {
+  width: 380px;
+  height: 100px;
+  color: white;
+  font-size: 40px;
+  background-color: #007CA2;
+  font-weight: bold;
+  border-radius: 50px;
+  border-color: white;
+}
+
+#sad-monkey {
+  margin-right: 90px;
+}

@@ -1,0 +1,89 @@
+<div class="auth-register-page">
+
+  <div class="d-flex flex-row justify-content-center">
+    <img id="h-monkey" class="mr-5" src="../../../assets/happy-monkey.png" height="312" width="312"/>
+
+    <div class="flex-column pt-5">
+      <h1 class="pb-3">Inscription</h1>
+
+
+      <form  *ngIf="!isSuccessful"
+             name="form"
+             (ngSubmit)="f.form.valid && onSubmit()"
+             #f="ngForm"
+             novalidate>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" class="form-control" id="email" aria-describedby="emailHelp"
+                 placeholder="Entrer un email" class="form-control"
+                 [(ngModel)]="form.email"
+                 required
+                 email
+                 #email="ngModel"/>
+          <div class="alert-danger" *ngIf="email.errors && f.submitted">
+            <div *ngIf="email.errors.required">Email is required</div>
+            <div *ngIf="email.errors.email">
+              Email must be a valid email address
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="name">Nom</label>
+          <input type="name" class="form-control" id="name" aria-describedby="nameHelp" placeholder="Babouin"
+                 class="form-control"
+                 name="name"
+                 [(ngModel)]="form.name"
+                 required
+                 #name="ngModel"/>
+
+        </div>
+
+        <div class="form-group">
+          <label for="surname">Prénom</label>
+          <input type="name" class="form-control" id="surname" aria-describedby="surnameHelp" placeholder="Malin"  class="form-control"
+                 name="surname"
+                 [(ngModel)]="form.surname"
+                 required
+                 #surname="ngModel"/>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Mot de passe</label>
+          <input type="password" class="form-control" id="password" placeholder="Mot de passe" class="form-control"
+                 [(ngModel)]="form.password"
+                 required
+                 minlength="6"
+                 #password="ngModel"/>
+          <div class="alert-danger" *ngIf="password.errors && f.submitted">
+            <div *ngIf="password.errors.required">Password is required</div>
+            <div *ngIf="password.errors.minlength">
+              Password must be at least 6 characters
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="passwordConfirm">Confirmer mot de passe</label>
+          <input type="password" class="form-control" id="passwordConfirm" placeholder="Confirmer mot de passe">
+        </div>
+      </form>
+      <div class="alert alert-success" *ngIf="isSuccessful">
+        Your registration is successful!
+      </div>
+    </div>
+  </div>
+
+
+  <div class="d-flex flex-column align-items-center pt-5">
+    <p>Vous disposez déjà d'un compte ? <a href="/login">Connectez-vous</a></p>
+    <button type="submit" class="btn btn-primary small-btn-confirm">Inscription</button>
+    <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
+      Signup failed!<br />{{ errorMessage }}
+    </div>
+  </div>
+
+
+
+</div>

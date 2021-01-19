@@ -44,4 +44,8 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
-/e2e/
+/e2e
+
+package-lock.json
+.browserslistrc
+.editorconfig

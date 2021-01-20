@@ -9,14 +9,24 @@
       <h1 class="pb-3">Bienvenue</h1>
 
 
-      <form>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
-          <label for="inputEmail">Email</label>
-          <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="Entrer un email">
+          <label for="email">Email</label>
+          <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Entrer un email" formControlName="email"
+                 [ngClass]="{ 'is-invalid': submitted && f.email.errors }" >
+          <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+            <div *ngIf="f.email.errors.required">Un email est requis</div>
+            <div *ngIf="f.email.errors.email">Vous devez saisir une addresse mail</div>
+          </div>
         </div>
         <div class="form-group">
-          <label for="inputPass">Mot de passe</label>
-          <input type="password" class="form-control" id="inputPass" placeholder="Mot de passe">
+          <label for="password">Mot de passe</label>
+          <input type="password" class="form-control" id="password" placeholder="Mot de passe" formControlName="password"
+                 [ngClass]="{ 'is-invalid': submitted && f.password.errors }" >
+          <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+            <div *ngIf="f.password.errors.required">Un mot de passe est requis</div>
+            <div *ngIf="f.password.errors.minlength">Votre mot de passe doit contenir un minimum de 6 caractères</div>
+          </div>
         </div>
       </form>
     </div>
@@ -25,7 +35,10 @@
 
   <div class="d-flex flex-column align-items-center pt-5">
     <p>Pas encore inscrit ? <a href="/register">Inscrivez-vous</a></p>
-    <button type="submit" class="btn btn-primary small-btn-confirm">Connexion</button>
+    <button type="submit" class="btn btn-primary small-btn-confirm" (click)="onSubmit()">Connexion</button>
+    <div class="alert alert-danger mt-4" *ngIf="submitted && isLoginFailed">
+      {{ errorMessage }}
+    </div>
   </div>
 
 

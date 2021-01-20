@@ -5,9 +5,14 @@ import {User} from '../models/user.model';
 import {map} from 'rxjs/operators';
 import {environment} from '../../../environments/environment';
 
+
+
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
+
+export const TOKEN_NAME = 'jwt_token';
+
 
 @Injectable({
   providedIn: 'root'
@@ -41,6 +46,7 @@ export class AuthService {
         return user;
       }));
   }
+
 
   logout(): void {
     // remove user from local storage and set current user to null

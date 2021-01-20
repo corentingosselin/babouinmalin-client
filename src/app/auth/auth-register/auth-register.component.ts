@@ -41,7 +41,6 @@ export class AuthRegisterComponent implements OnInit {
 
 
   onSubmit(): void {
-    console.log('submit');
     this.submitted = true;
     if (this.registerForm.invalid) {
       return;

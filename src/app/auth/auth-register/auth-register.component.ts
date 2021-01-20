@@ -2,20 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthService} from '../../core/services/auth.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {MustMatch} from '../../shared/directive/must-match.directive';
 
 @Component({
-  selector: 'app-register',
+  selector: 'app-auth-register',
   templateUrl: './auth-register.component.html',
   styleUrls: ['./auth-register.component.css']
 })
-export class RegisterComponent implements OnInit {
-  form: any = {
-    username: null,
-    email: null,
-    password: null
-  };
-  isSuccessful = false;
+export class AuthRegisterComponent implements OnInit {
+  submitted = false;
   isSignUpFailed = false;
+  isSignUpSucceed = false;
+
   errorMessage = '';
   registerForm: FormGroup;
 
@@ -33,8 +31,7 @@ export class RegisterComponent implements OnInit {
       surname: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', Validators.required],
-      acceptTerms: [false, Validators.requiredTrue]
+      confirmPassword: ['', Validators.required]
     }, {
       validator: MustMatch('password', 'confirmPassword')
     });
@@ -44,13 +41,17 @@ export class RegisterComponent implements OnInit {
 
 
   onSubmit(): void {
-    const { name, surname, email, password } = this.form;
-
-    this.authService.register(name, surname, email, password).subscribe(
+    console.log('submit');
+    this.submitted = true;
+    if (this.registerForm.invalid) {
+      return;
+    }
+    this.authService.register(this.registerForm.value.name,
+      this.registerForm.value.surname, this.registerForm.value.email,
+      this.registerForm.value.password).subscribe(
       data => {
         console.log(data);
-        this.isSuccessful = true;
-        this.isSignUpFailed = false;
+        this.isSignUpSucceed = true;
         this.router.navigate(['/login']);
       },
       err => {

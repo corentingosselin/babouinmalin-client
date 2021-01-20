@@ -26,7 +26,7 @@ export class AuthService {
   }
 
   login(email: string, password: string): Observable<any> {
-    return this.http.post<any>(`${environment.api_url}/auth/login`, { email, password })
+    return this.http.post<any>(`${environment.api_url}auth/login`, { email, password }, httpOptions)
       .pipe(map(user => {
         // store user details and jwt token in local storage to keep user logged in between page refreshes
         localStorage.setItem('currentUser', JSON.stringify(user));
@@ -36,7 +36,7 @@ export class AuthService {
   }
 
   register(name: string, surname: string, email: string, password: string): Observable<any> {
-    return this.http.post<any>(`${environment.api_url}/auth/register`, { email, password, name, surname })
+    return this.http.post<any>(`${environment.api_url}auth/register`, { email, password, name, surname }, httpOptions)
       .pipe(map(user => {
         return user;
       }));

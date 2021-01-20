@@ -7,12 +7,9 @@ import { HeaderComponent } from './shared/header/header.component';
 import {HomeModule} from './home/home.module';
 import {FourOhFourComponent} from './fourohfour/fourohfour.component';
 import { AuthLoginComponent } from './auth/auth-login/auth-login.component';
-import { AuthRegisterComponent } from './auth/auth-register/auth-register.component';
-import { AlertComponent } from './shared/alert/alert.component';
-import {HTTP_INTERCEPTORS} from '@angular/common/http';
-import {JwtInterceptor} from './core/interceptors/jwt.interceptor';
-import {ErrorInterceptor} from './core/interceptors/error.interceptor';
 import {ReactiveFormsModule} from '@angular/forms';
+import {AuthRegisterComponent} from './auth/auth-register/auth-register.component';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -20,18 +17,16 @@ import {ReactiveFormsModule} from '@angular/forms';
     HeaderComponent,
     FourOhFourComponent,
     AuthLoginComponent,
-    AuthRegisterComponent,
-    AlertComponent
+    AuthRegisterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HomeModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })

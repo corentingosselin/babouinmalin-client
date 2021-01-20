@@ -7,69 +7,65 @@
       <h1 class="pb-3">Inscription</h1>
 
 
-      <form  *ngIf="!isSuccessful"
-             name="form"
-             (ngSubmit)="f.form.valid && onSubmit()"
-             #f="ngForm"
-             novalidate>
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
 
         <div class="form-group">
           <label for="email">Email</label>
           <input type="email" class="form-control" id="email" aria-describedby="emailHelp"
                  placeholder="Entrer un email" class="form-control"
-                 [(ngModel)]="form.email"
-                 required
-                 email
-                 #email="ngModel"/>
-          <div class="alert-danger" *ngIf="email.errors && f.submitted">
-            <div *ngIf="email.errors.required">Email is required</div>
-            <div *ngIf="email.errors.email">
-              Email must be a valid email address
-            </div>
+                 formControlName="email"
+                 [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+          <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+            <div *ngIf="f.email.errors.required">Email is required</div>
+            <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
           </div>
         </div>
 
         <div class="form-group">
           <label for="name">Nom</label>
           <input type="name" class="form-control" id="name" aria-describedby="nameHelp" placeholder="Babouin"
-                 class="form-control"
-                 name="name"
-                 [(ngModel)]="form.name"
-                 required
-                 #name="ngModel"/>
+                 formControlName="name"
+                 class="form-control" [ngClass]="{ 'is-invalid': submitted && f.name.errors }"/>
+          <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+            <div *ngIf="f.name.errors.required">Last Name is required</div>
+          </div>
 
         </div>
 
         <div class="form-group">
           <label for="surname">Prénom</label>
           <input type="name" class="form-control" id="surname" aria-describedby="surnameHelp" placeholder="Malin"  class="form-control"
-                 name="surname"
-                 [(ngModel)]="form.surname"
-                 required
-                 #surname="ngModel"/>
+                 formControlName="surname"
+                 [ngClass]="{ 'is-invalid': submitted && f.surname.errors }" />
+          <div *ngIf="submitted && f.surname.errors" class="invalid-feedback">
+            <div *ngIf="f.surname.errors.required">Le prénom est requis</div>
+          </div>
         </div>
 
         <div class="form-group">
           <label for="password">Mot de passe</label>
           <input type="password" class="form-control" id="password" placeholder="Mot de passe" class="form-control"
-                 [(ngModel)]="form.password"
-                 required
-                 minlength="6"
-                 #password="ngModel"/>
-          <div class="alert-danger" *ngIf="password.errors && f.submitted">
-            <div *ngIf="password.errors.required">Password is required</div>
-            <div *ngIf="password.errors.minlength">
-              Password must be at least 6 characters
-            </div>
+                 formControlName="password"
+                 [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+          <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+            <div *ngIf="f.password.errors.required">Password is required</div>
+            <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
           </div>
         </div>
 
         <div class="form-group">
-          <label for="passwordConfirm">Confirmer mot de passe</label>
-          <input type="password" class="form-control" id="passwordConfirm" placeholder="Confirmer mot de passe">
+          <label for="confirmPassword">Confirmer mot de passe</label>
+          <input type="password" class="form-control" id="confirmPassword" placeholder="Confirmer mot de passe"
+                 formControlName="confirmPassword"
+                 [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }" />
+          <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
+            <div *ngIf="f.confirmPassword.errors.required">Confirm Password is required</div>
+            <div *ngIf="f.confirmPassword.errors.mustMatch">Passwords must match</div>
+          </div>
         </div>
+
       </form>
-      <div class="alert alert-success" *ngIf="isSuccessful">
+      <div class="alert alert-success" *ngIf="f.submitted && isSignUpSucceed">
         Your registration is successful!
       </div>
     </div>
@@ -78,7 +74,7 @@
 
   <div class="d-flex flex-column align-items-center pt-5">
     <p>Vous disposez déjà d'un compte ? <a href="/login">Connectez-vous</a></p>
-    <button type="submit" class="btn btn-primary small-btn-confirm">Inscription</button>
+    <button type="submit" class="btn btn-primary small-btn-confirm" (click)="onSubmit()">Inscription</button>
     <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
       Signup failed!<br />{{ errorMessage }}
     </div>

@@ -10,6 +10,7 @@ import { AuthLoginComponent } from './auth/auth-login/auth-login.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {AuthRegisterComponent} from './auth/auth-register/auth-register.component';
 import {HttpClientModule} from '@angular/common/http';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import {HttpClientModule} from '@angular/common/http';
     HeaderComponent,
     FourOhFourComponent,
     AuthLoginComponent,
-    AuthRegisterComponent
+    AuthRegisterComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

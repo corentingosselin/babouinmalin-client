@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../../core/services/auth.service';
-import {TokenStorageService} from '../../core/services/token-storage.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 
@@ -15,13 +14,11 @@ export class AuthLoginComponent implements OnInit {
   isLoggedIn = false;
   isLoginFailed = false;
   errorMessage = '';
-  roles: string[] = [];
   loginForm: FormGroup;
 
 
   constructor(
     private authService: AuthService,
-    private tokenStorage: TokenStorageService,
     private formBuilder: FormBuilder,
     private router: Router) { }
 
@@ -32,10 +29,10 @@ export class AuthLoginComponent implements OnInit {
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
 
-    if (this.tokenStorage.getToken()) {
+   /* if (this.tokenStorage.getToken()) {
       this.isLoggedIn = true;
-      this.roles = this.tokenStorage.getUser().roles;
-    }
+      //redirect if already logged
+    }*/
   }
 
   get f() { return this.loginForm.controls; }
@@ -46,19 +43,19 @@ export class AuthLoginComponent implements OnInit {
     if (!this.loginForm.valid) { return; }
     this.authService.login(this.loginForm.value.email, this.loginForm.value.password).subscribe(
       data => {
-        this.tokenStorage.saveToken(data.accessToken);
-        this.tokenStorage.saveUser(data);
+        // this.tokenStorage.saveToken(data.accessToken);
+        // this.tokenStorage.saveUser(data);
+        localStorage.setItem('token', data);
 
         this.isLoginFailed = false;
         this.isLoggedIn = true;
-        this.roles = this.tokenStorage.getUser().roles;
         this.router.navigate(['/']);
       },
       err => {
-        if (err.error.status === undefined) {
-          this.errorMessage = 'Une erreur inconnue est survenue';
-        } else {
+        if (err.error !== undefined) {
           this.errorMessage = err.error;
+        } else {
+          this.errorMessage = 'Une erreur inconnue est survenue';
         }
         this.isLoginFailed = true;
       }

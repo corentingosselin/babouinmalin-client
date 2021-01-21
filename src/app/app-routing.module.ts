@@ -4,10 +4,12 @@ import {FourOhFourComponent} from './fourohfour/fourohfour.component';
 import {HomeComponent} from './home/home.component';
 import {AuthLoginComponent} from './auth/auth-login/auth-login.component';
 import {AuthRegisterComponent} from './auth/auth-register/auth-register.component';
+import {ProfileComponent} from './profile/profile.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: '',   redirectTo: '/home', pathMatch: 'full' },
+  { path: 'profile', component: ProfileComponent },
   { path: 'login', component: AuthLoginComponent },
   { path: 'register', component: AuthRegisterComponent },
   {path: '404', component: FourOhFourComponent},

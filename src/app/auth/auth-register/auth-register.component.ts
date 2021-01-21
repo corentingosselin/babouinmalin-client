@@ -19,10 +19,10 @@ export class AuthRegisterComponent implements OnInit {
 
 
   constructor(private authService: AuthService, private router: Router, private formBuilder: FormBuilder) {
-    if (this.authService.currentUserValue) {
+    /*if (this.authService.) {
       // redirect to home if already logged in
       this.router.navigate(['/']);
-    }
+    }*/
   }
 
   ngOnInit(): void {

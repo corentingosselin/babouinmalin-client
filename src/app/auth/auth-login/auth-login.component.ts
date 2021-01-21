@@ -43,9 +43,7 @@ export class AuthLoginComponent implements OnInit {
     if (!this.loginForm.valid) { return; }
     this.authService.login(this.loginForm.value.email, this.loginForm.value.password).subscribe(
       data => {
-        // this.tokenStorage.saveToken(data.accessToken);
-        // this.tokenStorage.saveUser(data);
-        localStorage.setItem('token', data);
+        localStorage.setItem('token', data.token);
 
         this.isLoginFailed = false;
         this.isLoggedIn = true;

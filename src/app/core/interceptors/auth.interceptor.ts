@@ -5,10 +5,12 @@ import { HttpInterceptor, HttpHandler, HttpRequest } from '@angular/common/http'
 import {Observable, throwError} from 'rxjs';
 import { catchError, filter, take, switchMap } from 'rxjs/operators';
 import {Router} from '@angular/router';
+import {JwtHelperService} from '@auth0/angular-jwt';
 const TOKEN_HEADER_KEY = 'Authorization';  // for Spring Boot back-end
-
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
+
+
   constructor(private router: Router) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {

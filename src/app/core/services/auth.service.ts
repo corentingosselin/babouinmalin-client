@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {BehaviorSubject, config, Observable} from 'rxjs';
-import {User} from '../models/user.model';
 import {map} from 'rxjs/operators';
 import {environment} from '../../../environments/environment';
 
@@ -20,6 +19,7 @@ export class AuthService {
   login(email: string, password: string): Observable<any> {
     return this.http.post<any>(`${environment.api_url}auth/login`, { email, password }, httpOptions)
       .pipe(map(user => {
+        localStorage.setItem('user', JSON.stringify({ id: user.id, email: user.email, name: user.name, surname: user.surname}));
         return user;
       }));
   }
@@ -30,6 +30,8 @@ export class AuthService {
         return user;
       }));
   }
+
+
 
 
   logout(): void {

@@ -4,6 +4,21 @@
   max-height: 80px;
 }
 
+a:hover {
+  text-decoration: none;
+}
+
+a:hover #user-icon {
+  color: darkorange;
+}
+
+a:hover #connect {
+  color: darkorange;
+}
+
+
+
+
 .nav-link {
   color: white !important;
   font-size: 20px;
@@ -14,17 +29,17 @@
   background-color: white;
   color: #007CA2!important;
   border-radius: 10px;
+  margin-left: 30px;
+}
+
+#plus-symbol {
+  padding-top: 5px;
 }
 
 #connect {
   font-size: 10px;
 }
 
-#user-icon {
-  color: white;
-  padding-left: 35px;
-  font-size: 200%;
-}
 
 .sp-item {
   padding-left: 70px;
@@ -51,7 +66,17 @@
   font-size: small;
 }
 
-@media (max-width: 1095px) {
+#account {
+  font-size: 80%;
+  color: white;
+
+}
+
+#global-account {
+  padding-right: 20px;
+}
+
+@media (max-width: 1150px) {
   .navbar {
     max-height: 20%;
   }
@@ -64,9 +89,9 @@
     visibility: hidden;
   }
 
-  #connect {
+  #global-account {
     font-size: 20px;
-    margin-left: 0;
+    flex-direction: row;
   }
 }
 

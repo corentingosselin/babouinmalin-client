@@ -3,22 +3,30 @@
 
   <div id="title" class="">
     <h1>Bienvenue</h1>
-    <h1>Gosselin Corentin</h1>
+    <h1>{{user.name}} {{user.surname}}</h1>
   </div>
 
   <div id="profile" class="d-flex flex-row">
 
-    <img src="../../assets/happy-monkey.png" height="312" width="312"/>
+    <div class="d-flex flex-column align-items-center">
+      <img src="../../assets/happy-monkey.png" height="312" width="312"/>
+      <button type="submit" class="btn btn-primary small-btn-confirm mt-4 mr-2" (click)="onLogout()">Se déconnecter</button>
+    </div>
 
-    <div id="info" class="ml-4">
+    <div id="info" class="colored">
       <h3>Mes informations</h3>
 
-      <div id="card" class="d-flex flex-column p-3">
-        <span>Email corentin.gosselin@supinfo.com</span>
-        <a>modifier mon adresse mail</a>
-        <a>modifier mon mot de passe</a>
-
+      <div id="card" class="d-flex flex-column p-5">
+        <div style="font-weight: bold">Email <span style="font-weight: normal">{{user.email}}</span></div>
+        <a href="/update-email">modifier mon adresse mail</a>
+        <a href="/update-password" class="pt-2">modifier mon mot de passe</a>
       </div>
     </div>
+    <div id="option-button" class="d-flex flex-column align-items-center">
+      <button type="submit" id="proposals" class="btn btn-primary small-btn-confirm">Demandes de trocs</button>
+      <a href="/my-barters"><button type="submit" id="offers" class="btn btn-primary small-btn-confirm">Mes offres de trocs</button></a>
+    </div>
+
+
   </div>
 </div>

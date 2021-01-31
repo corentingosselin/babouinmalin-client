@@ -1,0 +1,45 @@
+<div class="update-email-page">
+
+
+
+  <div class="d-flex flex-row justify-content-center">
+    <div class="flex-column pt-5">
+      <h1 class="pb-3">Modification de votre email</h1>
+
+
+      <form [formGroup]="updateForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="old-email">Ancienne addresse mail</label>
+          <input type="email" class="form-control" id="old-email" aria-describedby="emailHelp" placeholder="Entrez votre ancien email" formControlName="oldEmail"
+                 [ngClass]="{ 'is-invalid': submitted && f.oldEmail.errors }" >
+          <div *ngIf="submitted && f.oldEmail.errors" class="invalid-feedback">
+            <div *ngIf="f.oldEmail.errors.required">L'ancienne addresse mail est requise</div>
+            <div *ngIf="f.oldEmail.errors.email">Vous devez saisir une addresse mail</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Nouvelle addresse mail</label>
+          <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Entrez votre nouvel email" formControlName="email"
+                 [ngClass]="{ 'is-invalid': submitted && f.email.errors }" >
+          <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+            <div *ngIf="f.email.errors.required">Une nouvelle addresse mail est requise</div>
+            <div *ngIf="f.email.errors.email">Vous devez saisir une addresse mail</div>
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+
+  <div class="d-flex flex-column align-items-center pt-5">
+    <button type="submit" class="btn btn-primary small-btn-confirm" (click)="onSubmit()">Confirmer</button>
+    <div class="alert alert-danger mt-4" *ngIf="submitted && isLoginFailed">
+      {{ errorMessage }}
+    </div>
+  </div>
+
+
+
+</div>

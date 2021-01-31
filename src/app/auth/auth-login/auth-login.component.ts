@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../../core/services/auth.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 
 @Component({
@@ -15,24 +15,29 @@ export class AuthLoginComponent implements OnInit {
   isLoginFailed = false;
   errorMessage = '';
   loginForm: FormGroup;
+  returnUrl: string;
+
 
 
   constructor(
+    private route: ActivatedRoute,
     private authService: AuthService,
     private formBuilder: FormBuilder,
     private router: Router) { }
 
   ngOnInit(): void {
+    this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/';
 
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
 
-   /* if (this.tokenStorage.getToken()) {
-      this.isLoggedIn = true;
-      //redirect if already logged
-    }*/
+    if (this.authService.currentUserValue) {
+      // redirect if already logged
+      this.router.navigateByUrl(this.returnUrl);
+
+    }
   }
 
   get f() { return this.loginForm.controls; }
@@ -43,11 +48,10 @@ export class AuthLoginComponent implements OnInit {
     if (!this.loginForm.valid) { return; }
     this.authService.login(this.loginForm.value.email, this.loginForm.value.password).subscribe(
       data => {
-        localStorage.setItem('token', data.token);
-
         this.isLoginFailed = false;
         this.isLoggedIn = true;
-        this.router.navigate(['/']);
+        this.router.navigateByUrl(this.returnUrl);
+
       },
       err => {
         if (err.error !== undefined) {

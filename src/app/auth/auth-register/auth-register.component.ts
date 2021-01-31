@@ -49,12 +49,11 @@ export class AuthRegisterComponent implements OnInit {
       this.registerForm.value.surname, this.registerForm.value.email,
       this.registerForm.value.password).subscribe(
       data => {
-        console.log(data);
         this.isSignUpSucceed = true;
         this.router.navigate(['/login']);
       },
       err => {
-        this.errorMessage = err.error.message;
+        this.errorMessage = err.error;
         this.isSignUpFailed = true;
       }
     );

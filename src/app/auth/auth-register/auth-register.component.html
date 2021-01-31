@@ -16,8 +16,8 @@
                  formControlName="email"
                  [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
           <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-            <div *ngIf="f.email.errors.required">Email is required</div>
-            <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+            <div *ngIf="f.email.errors.required">L'adresse email est obligatoire</div>
+            <div *ngIf="f.email.errors.email">Vous devez entrerune adresse mail</div>
           </div>
         </div>
 
@@ -27,7 +27,7 @@
                  formControlName="name"
                  class="form-control" [ngClass]="{ 'is-invalid': submitted && f.name.errors }"/>
           <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
-            <div *ngIf="f.name.errors.required">Last Name is required</div>
+            <div *ngIf="f.name.errors.required">Le nom de famille est obligatoire</div>
           </div>
 
         </div>
@@ -38,7 +38,7 @@
                  formControlName="surname"
                  [ngClass]="{ 'is-invalid': submitted && f.surname.errors }" />
           <div *ngIf="submitted && f.surname.errors" class="invalid-feedback">
-            <div *ngIf="f.surname.errors.required">Le prénom est requis</div>
+            <div *ngIf="f.surname.errors.required">Le prénom est obligatoire</div>
           </div>
         </div>
 
@@ -48,8 +48,8 @@
                  formControlName="password"
                  [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
           <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-            <div *ngIf="f.password.errors.required">Password is required</div>
-            <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+            <div *ngIf="f.password.errors.required">Un mot de passe est obligatoire</div>
+            <div *ngIf="f.password.errors.minlength">Le mot de passe doit contenir au moins 6 caractères</div>
           </div>
         </div>
 
@@ -59,14 +59,14 @@
                  formControlName="confirmPassword"
                  [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }" />
           <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
-            <div *ngIf="f.confirmPassword.errors.required">Confirm Password is required</div>
-            <div *ngIf="f.confirmPassword.errors.mustMatch">Passwords must match</div>
+            <div *ngIf="f.confirmPassword.errors.required">Vous devez confirmer votre mot de passe</div>
+            <div *ngIf="f.confirmPassword.errors.mustMatch">Le mot de passe n'est pas le même</div>
           </div>
         </div>
 
       </form>
       <div class="alert alert-success" *ngIf="f.submitted && isSignUpSucceed">
-        Your registration is successful!
+        Votre inscription est terminée
       </div>
     </div>
   </div>
@@ -75,8 +75,8 @@
   <div class="d-flex flex-column align-items-center pt-5">
     <p>Vous disposez déjà d'un compte ? <a href="/login">Connectez-vous</a></p>
     <button type="submit" class="btn btn-primary small-btn-confirm" (click)="onSubmit()">Inscription</button>
-    <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
-      Signup failed!<br />{{ errorMessage }}
+    <div class="alert alert-danger mt-4" *ngIf="submitted && isSignUpFailed">
+      {{ errorMessage }}
     </div>
   </div>
 

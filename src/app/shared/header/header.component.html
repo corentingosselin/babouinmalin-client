@@ -12,13 +12,13 @@
   <div class="collapse navbar-collapse" id="navbarNav">
   <ul class="navbar-nav nav-pills m-md-auto mr-4">
     <li class="nav-item">
-      <a class="nav-link sp-item" href="#">Rercherche</a>
+      <a class="nav-link sp-item" href="/search">Recherche</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link sp-item" href="#">Mes demandes</a>
+      <a class="nav-link sp-item" href="/my-barters">Mes demandes</a>
     </li>
     <li class="nav-item">
-      <a id="new-barter" class="nav-link" href="#">
+      <a id="new-barter" class="nav-link" href="/barter-form">
         <div class="d-flex flex-row">
           <i id="plus-symbol" class="fa fa-plus-circle" aria-hidden="true"></i>
           <span class="pl-2 pr-2">Nouveau troc</span>
@@ -28,14 +28,19 @@
 
   </ul>
 
-  <ul class="navbar-nav ml-auto">
-    <li class="nav-item">
-      <div class="d-flex flex-column">
-        <i id="user-icon" class="fa fa-user"></i>
-        <a id="connect" class="nav-link " href="#">Se connecter</a>
-      </div>
+  <ul id="global-account" class="navbar-nav float-right d-flex flex-column">
+    <li class="nav-item ">
+      <a *ngIf="!currentUser" id="account" class="d-flex flex-column align-items-center" href="/login"><i id="user-icon" class="fa fa-user fa-3x" aria-hidden="true"></i>
+        <span id="connect">Se connecter</span>
+      </a>
+
+      <a *ngIf="currentUser" id="account" class="d-flex flex-column align-items-center" href="/profile"><i id="user-icon" class="fa fa-user fa-3x" aria-hidden="true"></i>
+        <span id="connect">Mon compte</span>
+      </a>
     </li>
   </ul>
+
+
 
   </div>
 

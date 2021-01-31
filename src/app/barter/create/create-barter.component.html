@@ -1,0 +1,103 @@
+<div class="create-barter-page">
+
+  <div id="create-barter-form" class="d-flex flex-column">
+
+
+    <div id="title-banner" class="d-flex flex-row">
+      <div id="line-gift">
+        <img id="gift" src="../../../assets/gift.png" height="212" width="212"/>
+        <div id="line"></div>
+      </div>
+      <h1 id="title-name">Création d'un troc</h1>
+    </div>
+
+    <form id="form" [formGroup]="createForm" (ngSubmit)="onSubmit()" class="d-flex flex-column form-group">
+
+      <div class="d-flex flex-row">
+
+        <div class="d-flex flex-column">
+          <div class="d-flex flex-row">
+
+            <div class="d-flex flex-column">
+              <label for="title">Titre de l'annonce</label>
+              <input type="name" class="form-control" id="title" aria-describedby="titleHelp"
+                     placeholder="Panier de fruits" formControlName="title"
+                     [ngClass]="{ 'is-invalid': submitted && f.title.errors }">
+              <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
+                <div *ngIf="f.title.errors.required">Un titre est obligatoire</div>
+                <div *ngIf="f.title.errors.minlength">Le titre doit être supérieur à 6 caractères</div>
+                <div *ngIf="f.title.errors.maxlength">Le titre ne doit pas dépasser 30 caractères</div>
+
+              </div>
+            </div>
+
+            <div id="selector" class="d-flex flex-column">
+              <label for="type">Sélectionner une catégorie</label>
+              <select id="type" class="form-control" formControlName="type"
+                      [ngClass]="{ 'is-invalid': submitted && f.type.errors }">
+                <option disabled>Sélectionner...</option>
+                <option *ngFor="let cat of categories;" value="{{cat.id}}">{{cat.categoryName}}</option>
+              </select>
+              <div *ngIf="submitted && f.type.errors" class="invalid-feedback">
+                <div *ngIf="f.type.errors.required">La catégorie est obligatoire</div>
+              </div>
+
+            </div>
+          </div>
+          <div class="description-label">
+            <label for="description">Description de l'objet</label>
+            <textarea id="description" type="name" class="form-control" id="description"
+                      aria-describedby="descriptionHelp" placeholder="Décrivez votre offre en quelques mots"
+                      formControlName="description"
+                      [ngClass]="{ 'is-invalid': submitted && f.description.errors }"> </textarea>
+            <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+              <div *ngIf="f.description.errors.required">Une description est obligatoire</div>
+              <div *ngIf="f.description.errors.minlength">La description doit être supérieur à 6 caractères</div>
+              <div *ngIf="f.description.errors.maxlength">La description ne doit pas dépasser 255 caractères</div>
+            </div>
+          </div>
+          <div class="description-label">
+            <label for="desire">Vous désirez en échange ?</label>
+            <textarea id="desire" type="name" class="form-control" aria-describedby="desireHelp"
+                      placeholder="Indiquez ce qui vous intéresse en échange" formControlName="desire"
+                      [ngClass]="{ 'is-invalid': submitted && f.desire.errors }"> </textarea>
+            <div *ngIf="submitted && f.desire.errors" class="invalid-feedback">
+              <div *ngIf="f.desire.errors.required">Une description est obligatoire</div>
+              <div *ngIf="f.desire.errors.minlength">La description doit être supérieur à 6 caractères</div>
+              <div *ngIf="f.desire.errors.maxlength">La description ne doit pas dépasser 255 caractères</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex flex-column">
+
+          <div id="img-form">
+            <div class="d-flex flex-row">
+              <label for="image" class="custom-file-upload">
+                <i class="fa fa-plus-circle"></i> Ajout d'une photo
+              </label>
+            </div>
+
+            <div>
+              <img id="img" [src]="url" > <br/>
+              <input id="image" type='file' accept="image/png" (change)="onSelectFile($event)"  formControlName="image"
+                     [ngClass]="{ 'is-invalid': submitted && f.image.errors }">
+              <div *ngIf="submitted && f.image.errors" class="invalid-feedback">
+                <div *ngIf="f.image.errors.required">Une image est obligatoire</div>
+              </div>
+            </div>
+          </div>
+          <button id="submitButton" type="button" class="btn btn-primary small-btn-confirm" (click)="onSubmit()">Déposer le troc</button>
+
+        </div>
+
+      </div>
+
+
+    </form>
+
+
+  </div>
+
+
+</div>

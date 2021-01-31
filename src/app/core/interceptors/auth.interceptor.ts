@@ -18,14 +18,14 @@ export class AuthInterceptor implements HttpInterceptor {
     const token = localStorage.getItem('token');
     // Clone the request to add the new header.
     const authReq = req.clone({ headers: req.headers.set(TOKEN_HEADER_KEY, 'Bearer ' + token) });
-    return next.handle(authReq).pipe(catchError(error => {
-      if (error instanceof HttpErrorResponse && error.status === 401) {
-        // this.token.signOut();
-        this.router.navigate(['/login']);
-      } else {
+    return next.handle(authReq).pipe(
+      catchError((error: HttpErrorResponse) => {
+        if (error.status === 401) {
+          this.router.navigate(['login']);
+        }
         return throwError(error);
-      }
-    }));
+      })
+    );
   }
 }
 

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {User} from '../core/models/user.model';
+import {AuthService} from '../core/services/auth.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -8,11 +10,14 @@ import {User} from '../core/models/user.model';
 })
 export class ProfileComponent implements OnInit {
   user: User;
-  constructor() { }
+  constructor(private authService: AuthService) {
+  }
 
   ngOnInit(): void {
     this.user = JSON.parse(localStorage.getItem('user'));
-    console.log(this.user.name);
   }
 
+  onLogout() {
+    this.authService.logOut('home');
+  }
 }

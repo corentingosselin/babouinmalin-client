@@ -1,15 +1,17 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-fourohfour',
   templateUrl: './fourohfour.component.html',
   styleUrls: ['./fourohfour.component.css']
 })
-export class FourOhFourComponent implements OnInit {
+export class FourOhFourComponent  {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
-  ngOnInit(): void {
+  goHome(): void {
+    this.router.navigate(['/login']);
   }
 
 }

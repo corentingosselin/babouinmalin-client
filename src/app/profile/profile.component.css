@@ -4,11 +4,55 @@
 }
 
 #profile {
-  padding-left: 4%;
+  padding-left: 8%;
   padding-top: 3%;
 }
 
 #card {
   border: 2px solid #007CA2;
   border-radius: 10px;
+  font-size: 25px;
 }
+
+#info {
+  padding-left: 8%;
+}
+
+
+h3 {
+  font-weight: bold;
+  padding-bottom: 10px;
+}
+
+a {
+  text-decoration: underline;
+  color: #007CA2;
+
+}
+.colored {
+  color: #007CA2;
+}
+
+#option-button {
+  padding-top: 5%;
+  padding-left: 5%;
+}
+
+#proposals {
+  width: 120%;
+  height: 65px;
+  color: white;
+  font-size: 20px;
+  background-color: darkorange;
+  font-weight: bold;
+  margin-bottom: 20%;
+}
+
+#offers {
+  width: 110%;
+  height: 60px;
+  color: white;
+}
+
+
+

@@ -1,7 +1,7 @@
 # BabouinMalin
 
-You can check the back end [here](https://github.com/corentingosselin/babouinmalin-back)
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.6.
+- You can check the back end [here](https://github.com/corentingosselin/babouinmalin-back)
+- This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.6.
 
 ## Development server
 
